@@ -30,7 +30,8 @@ function AllPosts() {
     API.deletePost(id)
       .then(res => loadPosts())
       .catch(err => console.log(err));
-  }
+  };
+
 
     return (
       <Container fluid>
@@ -50,7 +51,7 @@ function AllPosts() {
                         <br></br>
                         posted by {post.username} at {post.date}
                         <br></br>
-                        {post.photo}
+                        <img className="avatar" src={post.photo} alt="post" />            
                         <br></br>
                       </strong>
                     </Link>

@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
+//import image1 from './client/public/carpenter-working.jpg';
+
 
 function Posts() {
   // Setting our component's initial state
@@ -55,13 +57,15 @@ function Posts() {
     }
   };
 
+
     return (
       <Container fluid>
         <Row>
           <Col size="md-6">
             <Jumbotron>
               <h1>Make a Post Below!</h1>
-              <p>To post an image, upload it to PostImages, and paste the link below.</p>
+              <p>To post an image, upload it to <a href="https://postimages.org/" target="_blank" rel="noopener noreferrer">
+                PostImages</a>, and paste the Direct link below.</p>
             </Jumbotron>
             <form>
               <Input
@@ -86,12 +90,12 @@ function Posts() {
               />
               <FormBtn
                 disabled={!(formObject.username && formObject.title)}
-                onClick={handleFormSubmit}
-              >
+                onClick={handleFormSubmit} >
                 Press Here To Post
               </FormBtn>
             </form>
           </Col>
+
           <Col size="md-6 sm-12">
             <Jumbotron>
               <h1>Current Posts</h1>
@@ -102,7 +106,8 @@ function Posts() {
                   <ListItem key={post._id}>
                     <Link to={"/posts/" + post._id}>
                       <strong>
-                        {post.title} by {post.username}
+                        {post.title} 
+                        {/* by {post.username} */}
                         {/* <br></br>
                         {post.content} */}
                       </strong>
