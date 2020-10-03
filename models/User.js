@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const User = require("../../mern-auth/models/User");
 const Schema = mongoose.Schema;
 
 //create schema

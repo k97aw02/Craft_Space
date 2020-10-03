@@ -5,12 +5,12 @@ const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 const passport = require("passport");
 
-// input validation 
-const validateRegisterInput = require("./validation/register");
-const validateLoginInput = require("./validation/login");
+// input validation  Craft_Space\validation\register.js
+const validateRegisterInput = require("../../validation/register");
+const validateLoginInput = require("../../validation/login");
 
 // user model
-const User = require("./models/User");
+const User = require("../../models/User");
 
 // route POST api to register
 router.post("/register", (req, res) => {
