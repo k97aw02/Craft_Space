@@ -1,5 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import app from "../../base";
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -71,7 +72,9 @@ const useStyles = makeStyles((theme) => ({
                 <Typography variant="h6" className={classes.title} href="/">
                   CraftSpace
                 </Typography>
-                <Button color="inherit" href="/">Login</Button>
+                <Button color="inherit" href="/signup">Sign Up</Button>
+                <Button color="inherit" href="/login">Login</Button>
+                <Button color="inherit" onClick={() => app.auth().signOut()}>Sign out</Button>
               </Toolbar>
             </AppBar>
           </div>
