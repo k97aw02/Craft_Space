@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import DeleteBtn from "../components/DeleteBtn";
-import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
+import moment from 'moment';
 
 
 function AllPosts() {
@@ -19,7 +22,7 @@ function AllPosts() {
   // Loads all [posts]
   function loadPosts() {
     API.getPosts()
-      .then(res => 
+      .then(res =>
         setPosts(res.data)
       )
       .catch(err => console.log(err));
@@ -33,41 +36,68 @@ function AllPosts() {
   };
 
 
-    return (
-      <Container fluid>
-        <Row>
-          
-          <Col size="lg-12 lg-12">
-            <Jumbotron>
-              <h1>Current Posts</h1>
-            </Jumbotron>
-            {posts.length ? (
-              <List>
-                {posts.map(post => (
-                  <ListItem key={post._id}>
-                    <Link to={"/posts/" + post._id}>
-                      <strong>
-                        {post.title} 
-                        <br></br>
-                        posted by {post.username} at {post.date}
-                        <br></br>
-                        <img className="avatar" src={post.photo} alt="post" />            
-                        <br></br>
-                      </strong>
-                    </Link>
-                    {post.content}
-                    <DeleteBtn onClick={() => deletePost(post._id)} />
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
-          </Col>
-        </Row>
-      </Container>
-    );
-  }
+  return (
+
+    <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '40vh' }}>
+      <Grid item md={12} md={12}>
+        <Box bgcolor="info.main" >
+          <React.Fragment>
+            <CssBaseline />
+
+
+            <div style={{
+              textAlign: "center",
+              height: "300px",
+              width: "flex",
+              color: "white",
+              marginTop: "0",
+              backgroundImage: `url(https://freerangestock.com/sample/87961/man-crafting-wood.jpg)`,
+              backgroundSize: 'cover',
+              overflow: 'hidden',
+            }}>
+
+
+            </div>
+
+            <h1 style={{ marginTop: "10px" }}>Current Posts</h1>
+
+            <div style={{ padding: "0px 0px 20px 20px" }}>
+
+
+
+              {posts.length ? (
+                <List>
+                  {posts.map(post => (
+                    <ListItem key={post._id}>
+                      <Link to={"/posts/" + post._id}>
+                        <strong>
+                          {post.title}
+                          <br></br>
+                        posted by {post.username} at {moment(post.data).format("MMMM Do, YYYY")}
+                          <br></br>
+                          <img className="avatar" src={post.photo} alt="post" />
+                          <br></br>
+                        </strong>
+                      </Link>
+                      {post.content}
+                      <DeleteBtn onClick={() => deletePost(post._id)} />
+                    </ListItem>
+                  ))}
+                </List>
+
+              ) : (
+                  <h3>No Results to Display</h3>
+
+                )}
+
+            </div>
+
+          </React.Fragment>
+        </Box>
+      </Grid>
+    </Typography>
+  );
+}
 
 
 export default AllPosts;

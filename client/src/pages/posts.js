@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import DeleteBtn from "../components/DeleteBtn";
-import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
-//import image1 from './client/public/carpenter-working.jpg';
-
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
 
 function Posts() {
   // Setting our component's initial state
@@ -22,7 +23,7 @@ function Posts() {
   // Loads all [posts]
   function loadPosts() {
     API.getPosts()
-      .then(res => 
+      .then(res =>
         setPosts(res.data)
       )
       .catch(err => console.log(err));
@@ -38,10 +39,10 @@ function Posts() {
   // Handles updating component state when the user types into the input field
   function handleInputChange(event) {
     const { name, value } = event.target;
-    setFormObject({...formObject, [name]: value})
+    setFormObject({ ...formObject, [name]: value })
   };
 
-  // When the form is submitted, use the API.savePost method to save the post data
+  // When the form is submitted, the API.savePost method saves the post data
   // Then reload posts from the database
   function handleFormSubmit(event) {
     event.preventDefault();
@@ -50,7 +51,8 @@ function Posts() {
         title: formObject.title,
         username: formObject.username,
         content: formObject.content,
-        photo: formObject.photo
+        photo: formObject.photo,
+        date: formObject.date,
       })
         .then(res => loadPosts())
         .catch(err => console.log(err));
@@ -58,72 +60,131 @@ function Posts() {
   };
 
 
-    return (
-      <Container fluid>
-        <Row>
-          <Col size="md-6">
-            <Jumbotron>
+
+
+  return (
+
+    <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '40vh' }}>
+      <Grid item md={12} md={12}>
+        <Box bgcolor="info.main" >
+          <React.Fragment>
+            <CssBaseline />
+
+            <div style={{
+              textAlign: "center",
+              height: "300px",
+              width: "flex",
+              backgroundImage: `url(https://freerangestock.com/sample/87961/man-crafting-wood.jpg)`,
+              backgroundSize: 'cover',
+              overflow: 'hidden',            }}>
+            </div>
+
+            <div style={{ textAlign: "center" }}>
               <h1>Make a Post Below!</h1>
               <p>To post an image, upload it to <a href="https://postimages.org/" target="_blank" rel="noopener noreferrer">
                 PostImages</a>, and paste the Direct link below.</p>
-            </Jumbotron>
-            <form>
-              <Input
-                onChange={handleInputChange}
-                name="title"
-                placeholder="Title"
-              />
-              <Input
-                onChange={handleInputChange}
-                name="username"
-                placeholder="Username"
-              />
-              <Input
-                onChange={handleInputChange}
-                name="photo"
-                placeholder="Paste an image link here with https://"
-              />
-              <TextArea
-                onChange={handleInputChange}
-                name="content"
-                placeholder="Type Your Post Here"
-              />
-              <FormBtn
-                disabled={!(formObject.username && formObject.title)}
-                onClick={handleFormSubmit} >
-                Press Here To Post
-              </FormBtn>
-            </form>
-          </Col>
+            </div>
 
-          <Col size="md-6 sm-12">
-            <Jumbotron>
+            <Container maxWidth="sm" >
+
+              <form>
+                <Grid item lg={12} md={6}>
+                  <Box>
+
+                    <Input
+                      style={{
+                        height: "25px",
+                        width: "550px",
+                        backgroundColor: "black",
+                        color: "darkorange"
+                      }}
+
+                      onChange={handleInputChange}
+                      name="title"
+                      placeholder="Title"
+                    />
+                    <Input
+                      style={{
+                        height: "25px",
+                        width: "550px",
+                        backgroundColor: "black",
+                        color: "darkorange"
+                      }}
+
+                      onChange={handleInputChange}
+                      name="username"
+                      placeholder="Username"
+                    />
+                    <Input
+                      style={{
+                        height: "25px",
+                        width: "550px",
+                        backgroundColor: "black",
+                        color: "darkorange"
+                      }}
+
+                      onChange={handleInputChange}
+                      name="photo"
+                      placeholder="Paste an image link here with https://"
+                    />
+                    <TextArea
+                      style={{
+                        height: "250px",
+                        width: "550px",
+                        backgroundColor: "black",
+                        color: "darkorange"
+                      }}
+
+                      onChange={handleInputChange}
+                      name="content"
+                      placeholder="Type Your Post Here"
+                    />
+                  </Box>
+                </Grid>
+
+
+                <Grid item md={12} md={3}>
+                  <Box>
+                    <FormBtn
+                      // Requires: username, title, and photo to post
+                      disabled={!(formObject.username && formObject.title && formObject.photo)}
+                      onClick={handleFormSubmit} justifyContent="center">
+                      Press Here To Post
+              </FormBtn>
+                  </Box>
+                </Grid>
+
+              </form>
+
               <h1>Current Posts</h1>
-            </Jumbotron>
-            {posts.length ? (
-              <List>
-                {posts.map(post => (
-                  <ListItem key={post._id}>
-                    <Link to={"/posts/" + post._id}>
-                      <strong>
-                        {post.title} 
-                        {/* by {post.username} */}
-                        {/* <br></br>
-                        {post.content} */}
-                      </strong>
-                    </Link>
-                    <DeleteBtn onClick={() => deletePost(post._id)} />
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
-          </Col>
-        </Row>
-      </Container>
-    );
-  }
+              {posts.length ? (
+                <List>
+                  {posts.map(post => (
+                    <ListItem key={post._id}>
+                      <Link to={"/posts/" + post._id}>
+                        <strong>
+                          {post.title}
+                          {/* by {post.username} */}
+                          {/* <br></br>
+                          {post.content} */}
+                        </strong>
+                      </Link>
+                      <DeleteBtn onClick={() => deletePost(post._id)} />
+                    </ListItem>
+                  ))}
+                </List>
+              ) : (
+                  <h3>No Results to Display</h3>
+                )}
+            </Container>
+
+
+          </React.Fragment>
+        </Box>
+      </Grid>
+    </Typography>
+  );
+}
 
 
 export default Posts;
