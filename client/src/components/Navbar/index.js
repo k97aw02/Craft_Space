@@ -69,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
                 </Menu>
                 </IconButton>
                 <Typography variant="h6" className={classes.title} href="/">
-                  CrafterSpace
+                  CraftSpace
                 </Typography>
                 <Button color="inherit" href="/">Login</Button>
               </Toolbar>

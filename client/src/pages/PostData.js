@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import moment from 'moment';
+import Footer from '../components/Footer/';
 
 function PostData(props) {
   const [post, setPost] = useState({})
@@ -23,7 +24,7 @@ function PostData(props) {
   return (
 
     <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '40vh' }}>
-      <Grid item md={12} md={12}>
+      <Grid item md={12}>
         <Box bgcolor="info.main" >
           <React.Fragment>
             <CssBaseline />
@@ -63,7 +64,9 @@ function PostData(props) {
                 </article>
 
                 <Link to="/">← Back to Posts</Link>
-              </Box></Grid>
+              </Box>
+              </Grid>
+              <Footer />
           </React.Fragment>
         </Box>
       </Grid>

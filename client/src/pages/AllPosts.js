@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import moment from 'moment';
-
+import Footer from '../components/Footer/';
 
 function AllPosts() {
   // Setting our component's initial state
@@ -91,11 +91,12 @@ function AllPosts() {
                 )}
 
             </div>
-
+            <Footer />
           </React.Fragment>
         </Box>
       </Grid>
     </Typography>
+    
   );
 }
 

@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
+import Footer from '../components/Footer/';
 
 function Posts() {
   // Setting our component's initial state
@@ -65,7 +66,7 @@ function Posts() {
   return (
 
     <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '40vh' }}>
-      <Grid item md={12} md={12}>
+      <Grid item md={12}>
         <Box bgcolor="info.main" >
           <React.Fragment>
             <CssBaseline />
@@ -143,7 +144,7 @@ function Posts() {
                 </Grid>
 
 
-                <Grid item md={12} md={3}>
+                <Grid item md={12}>
                   <Box>
                     <FormBtn
                       // Requires: username, title, and photo to post
@@ -178,7 +179,7 @@ function Posts() {
                 )}
             </Container>
 
-
+            <Footer />
           </React.Fragment>
         </Box>
       </Grid>
