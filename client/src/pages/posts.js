@@ -46,8 +46,8 @@ function Posts() {
   // When the form is submitted, the API.savePost method saves the post data
   // Then reload posts from the database
   function handleFormSubmit(event) {
-    event.preventDefault();
-    if (formObject.title && formObject.username) {
+    // event.preventDefault();
+    if (formObject.title && formObject.username && formObject.photo) {
       API.savePost({
         title: formObject.title,
         username: formObject.username,
@@ -151,7 +151,7 @@ function Posts() {
                       disabled={!(formObject.username && formObject.title && formObject.photo)}
                       onClick={handleFormSubmit} justifyContent="center">
                       Press Here To Post
-              </FormBtn>
+                    </FormBtn>
                   </Box>
                 </Grid>
 

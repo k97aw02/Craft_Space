@@ -64,6 +64,7 @@ function PostData(props) {
                 </article>
 
                 <Link to="/">← Back to Posts</Link>
+
               </Box>
               </Grid>
               <Footer />
