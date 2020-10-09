@@ -46,7 +46,7 @@ function Posts() {
   // When the form is submitted, the API.savePost method saves the post data
   // Then reload posts from the database
   function handleFormSubmit(event) {
-    // event.preventDefault();
+    event.preventDefault();
     if (formObject.title && formObject.username && formObject.photo) {
       API.savePost({
         title: formObject.title,
