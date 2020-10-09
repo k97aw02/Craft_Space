@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Posts from "./pages/posts";
 import AllPosts from "./pages/AllPosts";
 import PostData from "./pages/PostData";
-import NoMatch from "./pages/NoMatch";
+// import NoMatch from "./pages/NoMatch";
 import ButtonAppBar from "./components/Navbar";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
@@ -34,9 +34,9 @@ function App() {
           <ProtectedRoute exact path="/AllPosts">
             <AllPosts />
           </ProtectedRoute>
-          <Route>
+          {/* <Route>
             <NoMatch />
-          </Route>
+          </Route> */}
         </Switch>
       </div>
     </Router>
