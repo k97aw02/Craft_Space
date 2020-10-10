@@ -24,7 +24,7 @@ function NoMatch() {
             }}>
 
             </div>
-            <h1>This page does not exist</h1>
+            <h1>You're leaving?</h1>
             <h1>
               <span role="img" aria-label="Dissapointed Face">
                 😢

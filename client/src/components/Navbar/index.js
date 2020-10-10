@@ -1,5 +1,6 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import app from "../../setFirebase";
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -25,61 +26,63 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-    
-   function ButtonAppBar() {
-    
-    const classes = useStyles();
-    const [anchorEl, setAnchorEl] = React.useState(null);
 
-    const handleClick = (event) => {
-      setAnchorEl(event.currentTarget);
-    };
-  
-    const handleClose = () => {
-      setAnchorEl(null);
-    };
+function ButtonAppBar() {
+
+  const classes = useStyles();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
 
-      return (
-       
-          <div className={classes.root}>
+  return (
 
-            <AppBar position="static">
-              <Toolbar>
-                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                  <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-                    <MenuIcon/>
-                    </Button>
-                    <Menu
-                    id="simple-menu"
-                    anchorEl={anchorEl}
-                    keepMounted
-                    open={Boolean(anchorEl)}
-                    onClose={handleClose}
-                  >
-                  <MenuItem onClick={handleClose} component={Link} to="/">
-                    Home
+    <div className={classes.root}>
+
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+            <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+              <MenuIcon />
+            </Button>
+            <Menu
+              id="simple-menu"
+              anchorEl={anchorEl}
+              keepMounted
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={handleClose} component={Link} to="/">
+                Home
                   </MenuItem>
-                <MenuItem onClick={handleClose} component={Link} to="/AllPosts">
-                  All Posts
+              <MenuItem onClick={handleClose} component={Link} to="/AllPosts">
+                All Posts
                   </MenuItem>
-                 <MenuItem onClick={handleClose} component={Link} to="/">
-                   Leave A Post!
+              <MenuItem onClick={handleClose} component={Link} to="/">
+                Leave A Post!
                  </MenuItem>
-                </Menu>
-                </IconButton>
-                <Typography variant="h6" className={classes.title} href="/">
-                  CraftSpace
+            </Menu>
+          </IconButton>
+          <Typography variant="h6" className={classes.title} href="/">
+            CraftSpace
                 </Typography>
-                <Button color="inherit" href="/">Login</Button>
-              </Toolbar>
-            </AppBar>
-          </div>
-        );
-        
-      }
+          <Button color="inherit" href="/signup">Sign Up</Button>
+          <Button color="inherit" href="/" >Login</Button>
+          <Button color="inherit" onClick={() => app.auth().signOut()}>Sign out</Button>
+        </Toolbar>
+      </AppBar>
+    </div>
+  );
 
- export default ButtonAppBar;
+}
+
+export default ButtonAppBar;
 // <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
 // <a className="navbar-brand" href="/">
 //   Craftspace
